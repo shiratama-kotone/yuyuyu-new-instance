@@ -1,80 +1,119 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="icon" href="/img/logo/favicon.ico">
-        <title>創世記</title>
-        <style>
-            body {
-                margin: 0 auto;
-            }
-            
-            nav {
-                width: 100%;
-                height: 70px;
-                background-color: dimgray;
-                padding-top: 5px;
-                box-sizing: border-box;
-            }
-            
-            nav ul {
-                display: flex;
-            }
-            
-            nav li {
-                list-style: none;
-            }
-            
-            a {
-                display: block;
-                text-decoration: none;
-                color: white;
-                margin-right: 35px;
-            }
-            
-            main {
-                background-color: #fefefe;
-            }
-            
-        </style>
-        <script src="/js/utils/utils.js"></script>
-        <script>
-            function checkAnswer(){
-                sha256(document.getElementById('user_answer').value).then((hash) => {
-                    if(hash === 'b4003030a618a54e83c92ac29756ea2ff0cedb7b06c0cdd5433e9eb0688194a9') {
-                        document.getElementById('result').textContent = '正解';
-                        document.cookie = 'yuki=True; path=/; max-age=604800';
-                        location.replace('/');
-                    } else {
-                        document.getElementById('result').textContent = '不正解'
-                    }
-                });
-            }
-        </script>
-    </head>
-    <body>
-            
-        <header>
-            <nav>
-                <ul>
-                    <li style="color: white;">旧約聖書 創世記</li>
-                </ul>
-            </nav>
-        </header>
-            
-        <main>
-            <h1>創世記 - 旧約聖書より</h1>
-            <p>はじめに神は天と地とを創造された。</p>
-            <p>地は形なく、虚しく、闇が淵のおもてにあり、神の霊が水の<ruby>面<rp>(</rp><rt>おもて</rt><rp>)</rp></ruby>を覆っていた。</p>
-            <p>神は「光あれ」と言われた。すると光があった。</p>
-            <p>神はその光を見て、良しとされた。神はその光と闇とを分けられた。</p>
-            <p>神は光を昼と名づけ、闇を夜と名づけられた。夕となり、また朝となった。</p><br><br>
-        </main>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>中学1年クイズ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe0e0;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 36px;
+        }
+        ol {
+            text-align: left;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-left: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .result-buttons {
+            display: none;
+            margin-top: 20px;
+        }
+        .result-buttons button {
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+   function checkAnswers() {
+    const correctAnswers = [
+        "5",          
+        "ちょうおんそく", 
+        "重力",             
+        "20世紀",     
+        "ア ウ エ イ",         
+    ];
+       //問題が簡単すぎる
 
-        <footer>
-            <input id="user_answer" type="text" placeholder="創世記はどこに載っていますか？" style="width: 155px;">
-            <button onclick="checkAnswer()">確かめる</button>
-            <p id="result"></p>
-        </footer>
-    </body>
+            // ユーザーの入力値を取得
+            const userAnswers = Array.from(document.querySelectorAll(".user-answer")).map(input => input.value.trim());
+            let correctCount = 0;
+
+            // 答えを比較
+            for (let i = 0; i < correctAnswers.length; i++) {
+                if (userAnswers[i] === correctAnswers[i]) {
+                    correctCount++;
+                }
+            }
+
+            // 正解率を計算
+            const score = (correctCount / correctAnswers.length) * 100;
+
+            // 合否判定とCookieの設定
+            if (score >= 60) {
+                document.cookie = "yuki=True; path=/";
+                document.getElementById("result").textContent = `合格！スコア: ${score}%`;
+                document.querySelector(".result-buttons").style.display = "block";
+            } else {
+                document.getElementById("result").textContent = `不合格。スコア: ${score}%`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>クイズ</h1>
+    <form id="quiz-form">
+        <ol>
+            <li>-5の絶対値は？<input class="user-answer" type="text"></li>
+            <li>「超音速」の読み方は？<input class="user-answer" type="text"></li>
+            <li>地球が中心に向かって物体を引く力を何というか。<input class="user-answer" type="text"></li>
+            <li>2024年は何世紀？<input class="user-answer" type="text"></li>
+            <li>ア is/イ friend?/ウ he/エ your 彼はあなたの友達ですか？となるように並び替えて“記号で”答えなさい<input class="user-answer" type="text"></li>
+        </ol>
+        <button type="button" onclick="checkAnswers()">採点する</button>
+    </form>
+    <p id="result"></p>
+    <div class="result-buttons">
+        <button onclick="window.location.href=window.location.href.replace('/genesis', '')">ホーム画面へ</button>
+        <button onclick="window.location.href=window.location.href.replace('/genesis', '/bbs')">掲示板へ</button>
+    </div>
+</body>
 </html>
