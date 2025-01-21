@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: new-instance
+    name: yuyuyu-new-instance
     env: python
     region: Oregon
     plan: free
