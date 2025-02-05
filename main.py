@@ -423,7 +423,7 @@ def suggest(keyword:str):
 
 @cache(seconds=120)
 def getSource(name):
-    return requests.get(f'https://raw.githubusercontent.com/LunaKamituki/yuki-source/refs/heads/main/{name}.html', headers=getRandomUserAgent()).text
+    return requests.get(f'https://raw.githubusercontent.com/shiratama-kotone/yuki-source/refs/heads/main/{name}.html', headers=getRandomUserAgent()).text
 
 @app.get("/bbs", response_class=HTMLResponse)
 def bbs(request: Request, name: Union[str, None] = "", seed:Union[str, None]="", channel:Union[str, None]="main", verify:Union[str, None]="false", yuki: Union[str] = Cookie(None)):
