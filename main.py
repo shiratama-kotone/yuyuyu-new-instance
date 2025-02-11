@@ -444,8 +444,6 @@ def bbsAPI(request: Request, t: str, channel:Union[str, None]="main", verify: Un
 def write_bbs(request: Request, name: str = "", message: str = "", seed:Union[str, None] = "", channel:Union[str, None]="main", verify:Union[str, None]="false", yuki: Union[str] = Cookie(None)):
     if not(checkCookie(yuki)):
         return redirect("/")
-    if 'Google-Apps-Script' in str(request.scope["headers"][1][1]):
-        raise UnallowedBot("GASのBotは許可されていません")
       
     params = {
       'name': urllib.parse.quote(name),
